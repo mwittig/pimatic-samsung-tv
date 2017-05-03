@@ -4,6 +4,7 @@ module.exports = (env) ->
   Promise = env.require 'bluebird'
   SamsungRemote = require 'samsung-remote'
   commons = require('pimatic-plugin-commons')(env)
+  M = env.matcher
 
 
   # ###SamsungTvPlugin class
@@ -70,7 +71,7 @@ module.exports = (env) ->
             ip: args[0] ? @config.host
           }
           
-          remote = new Samsung(remoteConfig)
+          remote = new SamsungRemote(remoteConfig)
           # #############################################################
           # ### Promisification and handling of err callback function needs review ###
           # #############################################################
