@@ -1,5 +1,7 @@
 # pimatic-samsung-tv
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mwittig/pimatic-samsung-tv.svg)](https://greenkeeper.io/)
+
 [![Npm Version](https://badge.fury.io/js/pimatic-samsung-tv.svg)](http://badge.fury.io/js/pimatic-samsung-tv)
 [![Build Status](https://travis-ci.org/mwittig/pimatic-samsung-tv.svg?branch=master)](https://travis-ci.org/mwittig/pimatic-samsung-tv)
 [![Dependency Status](https://david-dm.org/mwittig/pimatic-samsung-tv.svg)](https://david-dm.org/mwittig/pimatic-samsung-tv)
