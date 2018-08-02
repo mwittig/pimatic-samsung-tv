@@ -13,7 +13,8 @@ module.exports = (env) ->
     init: (app, @framework, @config) =>
       @debug = @config.debug || false
       @remote = new SamsungRemote({
-        ip: @config.host
+        ip: @config.host,
+        port: @config.port
       });
       @base = commons.base @, 'Plugin'
 
@@ -57,6 +58,7 @@ module.exports = (env) ->
   class SamsungTvActionHandler extends env.actions.ActionHandler
   
     constructor: (@framework, @config, @commandTokens) ->
+      @base = commons.base @, "SamsungTvActionHandler"
       
     executeAction: (simulate) =>
       @framework.variableManager.evaluateStringExpression(@commandTokens).then( (command) =>
@@ -64,12 +66,27 @@ module.exports = (env) ->
           # just return a promise fulfilled with a description about what we would do.
           return __("would send Samsung remote command: \"%s\"", command)
         else
-          # string can be of format "[IP] <command>", if IP is omitted the config.host value will be used. Overriding allows for operating multiple Samsung devices in the home
+          # string can be of format "[IP:PORT] <command>", if IP is omitted the config.host value will be used. Overriding allows for operating multiple Samsung devices in the home
           args = command.split " ", 2
           command = args.pop()
+
+          # default to global config
+          host = @config.host
+          port = @config.port
+
+          if args[0]
+            splitArgs = args[0].split ":"
+            host = splitArgs[0]
+            # check if port specified
+            if splitArgs[1]
+              port = splitArgs[1]
+            
           remoteConfig = {
-            ip: args[0] ? @config.host
+            ip: host,
+            port: port
           }
+
+          @base.debug "Sending command to SamsungTV with host #{host} and port #{port}"
           
           remote = new SamsungRemote(remoteConfig)
           # #############################################################
