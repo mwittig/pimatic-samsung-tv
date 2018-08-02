@@ -10,4 +10,8 @@ module.exports = {
     host:
       description: "IP address of the Samsung TV"
       type: "string"
+    port:
+      description: "The port to use"
+      type: "number"
+      default: 55000
 }
