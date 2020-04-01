@@ -37,7 +37,7 @@
   "configSchema": "samsung-tv-config-schema.coffee",
   "dependencies": {
     "pimatic-plugin-commons": "^0.9.5",
-    "samsung-remote": "^1.2.5"
+    "samsung-remote": "^1.5.2"
   },
   "optionalDependencies": {},
   "peerDependencies": {
